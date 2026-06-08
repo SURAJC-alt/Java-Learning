@@ -6,6 +6,6 @@ public class Main {
         System.out.print(var1+var2);
         int a = 2;
         int b = 4;
-        System.out.print(a+b)
+        System.out.print(a+b);
     }
 }
