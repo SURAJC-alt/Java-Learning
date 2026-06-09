@@ -1,0 +1,300 @@
+<h1>Java Fundamentals Notes : </h1>
+
+<h2>1. Classes and Objects</h2>
+A class is a blueprint or template that defines data and behavior.
+An object is an instance of a class created in memory.
+
+Example:
+""class Student {
+    String name;
+}
+Student s1 = new Student();""
+
+* "Student" is a class.
+* "s1" is an object of the "Student" class.
+
+</h2>2. Stack and Heap Memory</h2>
+
+<b> Stack </b>
+
+* Stores local variables.
+* Stores reference variables (memory addresses).
+* Memory allocation and deallocation are very fast.
+* Each thread has its own stack.
+
+<b> Heap </b>
+
+* Stores actual objects and their data.
+* Shared among all threads.
+* Managed by the Garbage Collector.
+
+<h2> Reference Variables </h2>
+
+* Live on the Stack.
+* Store the memory address of objects in the Heap.
+
+Example:
+
+""Student s = new Student();""
+
+* "s" is stored in the Stack.
+* The "Student" object is stored in the Heap.
+
+
+
+<h2>3. Reassignment and Garbage Collection </h2>
+
+Example:
+
+""String s = new String("Hello");
+s = new String("Java");""
+
+What happens:
+
+1. A "Hello" object is created in the Heap.
+2. "s" stores its address in the Stack.
+3. A "Java" object is created in the Heap.
+4. "s" now points to "Java".
+5. The "Hello" object has no references pointing to it.
+
+<h2>Garbage Collector (GC)<h2>
+
+* Runs automatically inside the JVM.
+* Frees memory occupied by unreachable objects.
+* Execution timing is determined by the JVM.
+* Objects are not removed immediately after becoming eligible.
+
+<h2>Garbage Collection Eligibility<h2>
+
+An object becomes eligible for Garbage Collection the moment no live references point to it.
+
+# Java Execution Models
+
+## 1. Compiled Languages (C++)
+
+* Entire source code is translated into machine code before execution.
+* Produces platform-dependent executables.
+* Very fast execution.
+
+Flow:
+
+```
+Source Code → Compiler → Machine Code (.exe) → Execution
+```
+
+---
+
+## 2. Interpreted Languages (Python)
+
+* Source code is translated and executed during runtime.
+* More flexible but generally slower.
+
+Flow:
+
+```
+Source Code → Interpreter → Execution
+```
+
+---
+
+## 3. Java's Hybrid Approach
+
+Java combines compilation and interpretation.
+
+Flow:
+
+```
+.java Source File
+        ↓
+      javac
+        ↓
+.class Bytecode
+        ↓
+       JVM
+        ↓
+ Machine Code
+```
+
+* Java source code is first compiled into Bytecode.
+* Bytecode is platform-independent.
+* The JVM executes the Bytecode.
+* Frequently used code is optimized by the JIT Compiler.
+
+---
+
+# Platform Independence
+
+## Java is Platform Independent
+
+The Java compiler always produces the same Bytecode regardless of the operating system.
+
+Example:
+
+```text
+Windows  → Bytecode
+Linux    → Bytecode
+macOS    → Bytecode
+```
+
+Because all systems generate the same Bytecode, Java programs can be moved between platforms.
+
+---
+
+## JVM is Platform Dependent
+
+Each operating system requires its own JVM implementation.
+
+Example:
+
+```text
+Windows JVM
+Linux JVM
+macOS JVM
+```
+
+The JVM translates Bytecode into native machine instructions for the host operating system.
+
+---
+
+# Java Architecture
+
+## JIT (Just-In-Time Compiler)
+
+* Part of the JVM.
+* Detects frequently executed code ("hot spots").
+* Converts Bytecode directly into native machine code.
+* Improves performance significantly.
+
+---
+
+## JVM (Java Virtual Machine)
+
+Responsibilities:
+
+* Loads classes.
+* Verifies Bytecode.
+* Executes Bytecode.
+* Manages memory.
+* Runs the Garbage Collector.
+
+The JVM is the engine that executes Java programs.
+
+---
+
+## JRE (Java Runtime Environment)
+
+Contains:
+
+* JVM
+* Core Java Libraries
+
+Purpose:
+
+* Allows users to run Java applications.
+* Does not contain development tools.
+
+---
+
+## JDK (Java Development Kit)
+
+Contains:
+
+* JRE
+* Java Compiler (`javac`)
+* Debugging tools
+* Development utilities
+
+Purpose:
+
+* Used for developing Java applications.
+
+Relationship:
+
+```
+JDK
+ └── JRE
+      └── JVM
+```
+
+---
+
+# Complete Java Program Lifecycle
+
+## Step 1: Write Source Code
+
+Create a file:
+
+```java
+HelloWorld.java
+```
+
+---
+
+## Step 2: Compilation
+
+The JDK compiler (`javac`) converts source code into Bytecode.
+
+```text
+HelloWorld.java
+       ↓
+      javac
+       ↓
+HelloWorld.class
+```
+
+This stage is called Compile Time.
+
+---
+
+## Step 3: Class Loading
+
+The Class Loader loads Bytecode into memory.
+
+```text
+.class File
+     ↓
+Class Loader
+```
+
+---
+
+## Step 4: Bytecode Verification
+
+The Bytecode Verifier checks:
+
+* Safety
+* Validity
+* Security
+
+before execution begins.
+
+---
+
+## Step 5: Execution
+
+The JVM executes the program.
+
+Initially:
+
+```text
+Bytecode → Interpreter → Execution
+```
+
+For frequently executed code:
+
+```text
+Bytecode → JIT Compiler → Native Machine Code → Execution
+```
+
+---
+
+## Step 6: Memory Management
+
+During execution:
+
+* Objects are created in the Heap.
+* References are stored in the Stack.
+* Unreachable objects become eligible for Garbage Collection.
+* The Garbage Collector reclaims unused memory automatically.
+
+#
