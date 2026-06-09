@@ -1,72 +1,85 @@
-<h1>Java Fundamentals Notes : </h1>
+# Java Fundamentals Notes
 
-<h2>1. Classes and Objects</h2>
-A class is a blueprint or template that defines data and behavior.
-An object is an instance of a class created in memory.
+## 1. Classes and Objects
+
+* A class is a blueprint or template that defines data and behavior.
+* An object is an instance of a class created in memory.
 
 Example:
-""class Student {
+
+```java
+class Student {
     String name;
 }
-Student s1 = new Student();""
 
-* "Student" is a class.
-* "s1" is an object of the "Student" class.
+Student s1 = new Student();
+```
 
-</h2>2. Stack and Heap Memory</h2>
+* `Student` is a class.
+* `s1` is an object of the `Student` class.
 
-<b> Stack </b>
+---
+
+## 2. Stack and Heap Memory
+
+### Stack
 
 * Stores local variables.
 * Stores reference variables (memory addresses).
 * Memory allocation and deallocation are very fast.
 * Each thread has its own stack.
 
-<b> Heap </b>
+### Heap
 
 * Stores actual objects and their data.
 * Shared among all threads.
 * Managed by the Garbage Collector.
 
-<h2> Reference Variables </h2>
+### Reference Variables
 
 * Live on the Stack.
 * Store the memory address of objects in the Heap.
 
 Example:
 
-""Student s = new Student();""
+```java
+Student s = new Student();
+```
 
-* "s" is stored in the Stack.
-* The "Student" object is stored in the Heap.
+* `s` is stored in the Stack.
+* The `Student` object is stored in the Heap.
 
+---
 
-
-<h2>3. Reassignment and Garbage Collection </h2>
+## 3. Reassignment and Garbage Collection
 
 Example:
 
-""String s = new String("Hello");
-s = new String("Java");""
+```java
+String s = new String("Hello");
+s = new String("Java");
+```
 
 What happens:
 
-1. A "Hello" object is created in the Heap.
-2. "s" stores its address in the Stack.
-3. A "Java" object is created in the Heap.
-4. "s" now points to "Java".
-5. The "Hello" object has no references pointing to it.
+1. A `"Hello"` object is created in the Heap.
+2. `s` stores its address in the Stack.
+3. A `"Java"` object is created in the Heap.
+4. `s` now points to `"Java"`.
+5. The `"Hello"` object has no references pointing to it.
 
-<h2>Garbage Collector (GC)<h2>
+### Garbage Collection Eligibility
+
+An object becomes eligible for Garbage Collection the moment no live references point to it.
+
+### Garbage Collector (GC)
 
 * Runs automatically inside the JVM.
 * Frees memory occupied by unreachable objects.
 * Execution timing is determined by the JVM.
 * Objects are not removed immediately after becoming eligible.
 
-<h2>Garbage Collection Eligibility<h2>
-
-An object becomes eligible for Garbage Collection the moment no live references point to it.
+---
 
 # Java Execution Models
 
