@@ -1,0 +1,108 @@
+1 Output: `System.out.println()`
+When making Java display output on the screen, we use:
+
+System.out.println("Hello World");
+
+1.Architectural Breakdown
+>System : A built-in Java class that provides access to system-related resources.
+It contains standard input, output, and error streams.
+>out : A public static final variable inside the System class.
+Its type is PrintStream.
+It represents the standard output stream, which is usually connected to the terminal/screen.
+>PrintStream : The data type of the out variable.
+It contains methods such as:
+print()
+println()
+printf()
+It converts Java data types (Strings, integers, doubles, booleans, etc.) into a format that can be displayed on the screen.
+
+Understanding System.out.println()
+System (Class)
+      ↓
+out (PrintStream variable)
+      ↓
+println() method
+      ↓
+Terminal Output
+
+When Java executes: System.out.println("Hello");
+it:
+1.Accesses the out variable inside the System class.
+2.Uses the dot (.) operator to access the println() method.
+3.Executes the method.
+4.Displays the output on the terminal.
+
+2 Input: The Scanner Architecture
+To take input from the user through the keyboard:
+
+import java.util.Scanner;
+Scanner sc = new Scanner(System.in);
+
+Breakdown: 
+Scanner (The Class): A built-in Java class used for taking input.
+Contains methods such as:
+nextLine()
+next()
+nextInt()
+nextDouble()
+
+sc (The Variable): 
+Scanner sc = new Scanner(System.in);
+
+sc is a variable of type Scanner.
+It is used to access Scanner methods using the dot (.) operator.
+
+Example:
+sc.nextInt();
+sc.nextLine();
+
+System.in: 
+1.A standard input stream provided by the System class.
+2.Usually connected to the keyboard.
+3.Receives raw input data entered by the user.
+
+new Scanner(System.in): 
+1.Creates a Scanner object.
+2.The Scanner object reads data coming from System.in.
+3.It converts raw keyboard input into Java data types that the program can use.
+
+    Input Flow
+Physical Keyboard
+        ↓
+     System.in
+        ↓
+  Scanner Object
+        ↓
+ Scanner Methods
+(nextInt(), nextLine(), etc.)
+        ↓
+   Java Variables
+
+Example:
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter your age: ");
+
+        int age = sc.nextInt();
+
+        System.out.println("Age = " + age);
+    }
+}
+
+Flow:
+
+Keyboard
+   ↓
+System.in
+   ↓
+Scanner Object
+   ↓
+nextInt()
+   ↓
+int age
