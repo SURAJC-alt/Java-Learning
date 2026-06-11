@@ -170,7 +170,7 @@ The `F` tells Java to treat the literal as a `float`.
 
 ---
 
-## Quick Summary
+## Summary:
 
 * Primitive data types are built directly into Java.
 * They store simple, single values.
