@@ -451,3 +451,279 @@ A new String object is created instead.
 * Modifying object contents affects the original object.
 * Reassigning a reference does not affect the original variable.
 * Strings are immutable.
+
+
+## Scope in Java
+
+When you hear the word **Scope** in Java, think of:
+
+* **Visibility** → Where a variable can be accessed.
+* **Lifetime** → How long a variable exists in memory.
+
+## Rule
+
+A variable is only alive inside the curly braces `{}` where it was declared.
+
+---
+
+## Method Scope
+
+Variables declared inside a method are only visible within that method.
+
+```java
+public static void main(String[] args) {
+    int mainValue = 50;
+
+    System.out.println(mainValue); // Works
+}
+
+public static void anotherMethod() {
+    int methodValue = 100;
+
+    System.out.println(methodValue); // Works
+}
+```
+
+### Under the Hood
+
+Each method gets its own **Stack Frame**.
+
+```text
+Main Frame
+└── mainValue
+
+anotherMethod Frame
+└── methodValue
+```
+
+Since stack frames are isolated, one method cannot access another method's local variables.
+
+---
+
+## Block Scope
+
+Any code inside `{}` creates a new scope.
+
+```java
+int outer = 10;
+
+if (outer > 5) {
+
+    int inner = 99;
+
+    System.out.println(outer);
+    System.out.println(inner);
+
+}
+
+System.out.println(outer);
+
+// System.out.println(inner); Error
+```
+
+### Rule
+
+* Outer variables are visible inside inner blocks.
+* Inner variables are not visible outside their block.
+
+---
+
+## Loop Scope
+
+### For Loop
+
+```java
+for (int i = 0; i < 3; i++) {
+    System.out.println(i);
+}
+
+// System.out.println(i); Error
+```
+
+The variable `i` exists only inside the loop.
+
+If you need it afterward:
+
+```java
+int i;
+
+for (i = 0; i < 3; i++) {
+
+}
+
+System.out.println(i);
+```
+
+---
+
+## Shadowing
+
+Shadowing occurs when a local variable hides another variable with the same name.
+
+```java
+public class Main {
+
+    static int x = 90;
+
+    public static void main(String[] args) {
+
+        int x = 20;
+
+        System.out.println(x); // 20
+
+        changeValue();
+    }
+
+    public static void changeValue() {
+        System.out.println(x); // 90
+    }
+}
+```
+
+The local variable shadows the class variable inside its scope.
+
+---
+
+## Scope Summary
+
+| Scope        | Visible Where?    | Dies When?   |
+| ------------ | ----------------- | ------------ |
+| Method Scope | Inside the method | Method ends  |
+| Block Scope  | Inside the block  | Block ends   |
+| Loop Scope   | Inside the loop   | Loop ends    |
+| Class Scope  | Entire class      | Program ends |
+
+---
+
+# Variable Arguments (Varargs)
+
+Varargs allow a method to accept **zero or more arguments** of the same type.
+
+Introduced in Java 5.
+
+---
+
+## Syntax
+
+```java
+public static void printNumbers(int... numbers) {
+
+    for (int num : numbers) {
+        System.out.print(num + " ");
+    }
+}
+```
+
+---
+
+## Usage
+
+```java
+printNumbers();
+
+printNumbers(10);
+
+printNumbers(1, 2, 3, 4, 5);
+```
+
+All of these calls are valid.
+
+---
+
+## What Happens Internally?
+
+Java converts:
+
+```java
+printNumbers(1, 2, 3);
+```
+
+into:
+
+```java
+printNumbers(new int[]{1, 2, 3});
+```
+
+A varargs parameter is simply an array behind the scenes.
+
+---
+
+## Memory View
+
+```text
+Heap
+└── [1, 2, 3]
+
+Stack Frame
+└── numbers ──► Heap Array
+```
+
+The parameter stores a reference to the generated array.
+
+---
+
+## Rule 1: Varargs Must Be Last
+
+```java
+public static void display(String name, int... scores) {
+}
+```
+
+Valid.
+
+```java
+public static void display(int... scores, String name) {
+}
+```
+
+Invalid.
+
+---
+
+## Rule 2: Only One Varargs Parameter
+
+```java
+public static void process(int... nums, String... texts) {
+}
+```
+
+Invalid.
+
+A method can have only one varargs parameter.
+
+---
+
+## Varargs and Scope
+
+The varargs variable has **Method Scope**.
+
+```java
+public static void printNumbers(int... numbers) {
+
+}
+```
+
+`numbers` exists only inside that method.
+
+When the method ends:
+
+```text
+Stack Frame Destroyed
+↓
+numbers Removed
+```
+
+The variable is removed from memory just like any other local variable.
+
+---
+
+# Summery:
+
+* Scope controls variable visibility and lifetime.
+* Java creates separate stack frames for each method call.
+* Variables die when their scope ends.
+* Shadowing occurs when an inner variable hides an outer variable.
+* Varargs (`...`) allow flexible argument counts.
+* Internally, varargs are converted into arrays.
+* A varargs parameter must be the last parameter.
+* Only one varargs parameter is allowed per method.
