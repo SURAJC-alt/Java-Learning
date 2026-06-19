@@ -1,3 +1,3 @@
 # Java
 <br>
-This is My Java Practicing Repo. I am Starting to learn Java from Scratch
+This is My Java repository. I am Starting to learn Java.
