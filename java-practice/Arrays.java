@@ -34,5 +34,33 @@ public class Arrays {
         }
         // or Arrays to String method:
         System.out.println(Arrays.toString(arr));
+
+        //2D arrays:
+        int[][] arr = new int[3][3];
+        // System.out.println(arr.length);
+        //Input in 2D array: 
+        for(int i = 0; i < arr.length; i++){
+            for(int j = 0; j < arr[i].length; j++){
+                System.out.print("enter the "+i+""+j+"th Position element ");
+                arr[i][j] = sc.nextInt();
+            }
+        }
+        //Output of 2D array:
+        for(int i = 0; i < arr.length; i++){
+            System.out.print("[ ");
+            for(int j = 0; j < arr[i].length; j++){
+                System.out.print(arr[i][j]+" ");
+            }
+            System.out.print("]");
+            System.out.println();
+        }
+        //Or :
+        for(int row = 0; row < arr.length; row++){
+            System.out.println(java.util.Arrays.toString(arr[row]));
+        }
+        //Or:
+        for(int[] row : arr){
+            System.out.println(java.util.Arrays.toString(row));
+        }
     }
 }
