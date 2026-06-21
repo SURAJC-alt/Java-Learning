@@ -19,9 +19,28 @@ public class FunctionsProblems {
         System.out.println(findOccorance(num,find));
         reverseNumbers(1234);
         otherReverse(1234);
+        // int number = sc.nextInt();
+        // System.out.println(factorialFinder(number));
+        System.out.println(gcd(35,15));
         sc.close();
     }
-
+    //Factorial:
+    static int factorialFinder(int n){
+        int f = 1;
+        for(int i = 1; i <= n; i++){
+            f = f * i;
+        }
+        return f;
+    }
+    //GCD/HCF:
+    static int gcd(int a, int b){
+        while (b != 0) {
+            int rem = a % b;
+            a = b;
+            b = rem;
+        }
+        return a;
+    }
     //Prime number checker:
     static boolean checkIsPrime(int num){
     if (num <= 1){
