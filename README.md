@@ -1,3 +1,7 @@
-# Java
-<br>
-This is My Java repository. I am Starting to learn Java.
+# Java Repository 
+
+This repository documents Java learning, including notes, code examples, practice problems, and Data Structures & Algorithms concepts.
+
+## Author
+
+**Suraj Chitragar**
