@@ -63,79 +63,79 @@ public class Arrays {
             System.out.println(java.util.Arrays.toString(row));
         }
         }
-        // //Swaping two index values
-        // int[] arr = {1,2,3,4,5,6};
-        // swap(arr);
-        // System.out.println(java.util.Arrays.toString(arr));
+        //Swaping two index values
+        int[] arr = {1,2,3,4,5,6};
+        swap(arr);
+        System.out.println(java.util.Arrays.toString(arr));
 
-        // //Maximun element in the array:
-        // int[] arr = {2,7,15,9,4,30}; ;
-        // System.out.println(maxElement(arr));
+        //Maximun element in the array:
+        int[] arr = {2,7,15,9,4,30}; ;
+        System.out.println(maxElement(arr));
 
-        //reversing an array:
-        // int[] arr = {1,2,3,4,5,6,7};
-        // reverseArray(arr);
-        // reverseArray2(arr);
-        // System.out.println(java.util.Arrays.toString(arr));
+        reversing an array:
+        int[] arr = {1,2,3,4,5,6,7};
+        reverseArray(arr);
+        reverseArray2(arr);
+        System.out.println(java.util.Arrays.toString(arr));
     }
-    // static void swap(int[] arr, int i1, int i2){
-    //     int tem = arr[i1];
-    //     arr[i1] = arr[i2];
-    //     arr[i2] = tem;
-    // }
+    static void swap(int[] arr, int i1, int i2){
+        int tem = arr[i1];
+        arr[i1] = arr[i2];
+        arr[i2] = tem;
+    }
 
-    // static int maxElement(int[] arr){
-    //     int max = arr[0];
-    //     for(int i : arr){
-    //         if (i > max ){
-    //             max = i;
-    //         }
-    //     }
-    //     return max;
-    // }
+    static int maxElement(int[] arr){
+        int max = arr[0];
+        for(int i : arr){
+            if (i > max ){
+                max = i;
+            }
+        }
+        return max;
+    }
 
-    // static int maxElement(int[] arr,int i1, int i2){
-    // int max = 0;
-    // for(int i = i1; i <= i2; i++){
-    //     if(arr[i] > max){
-    //         max = arr[i];
-    //     }
-    // }
-    // return max;
+    static int maxElement(int[] arr,int i1, int i2){
+    int max = 0;
+    for(int i = i1; i <= i2; i++){
+        if(arr[i] > max){
+            max = arr[i];
+        }
+    }
+    return max;
         
-    // }
+    }
 
-    // static void reverseArray(int[] arr){
-    // int n = arr.length-1;
-    // int mid = arr.length/2;
-    // for(int i = 0; i < mid; i++){
-    //     int temp = arr[i];
-    //     arr[i] = arr[n-i];
-    //     arr[n-i] = temp;
-    //         }
-    // }
+    static void reverseArray(int[] arr){
+    int n = arr.length-1;
+    int mid = arr.length/2;
+    for(int i = 0; i < mid; i++){
+        int temp = arr[i];
+        arr[i] = arr[n-i];
+        arr[n-i] = temp;
+            }
+    }
 
-    // static void reverseArray(int[] arr){
-    //     int start = 0, end = arr.length-1;
-    //     while(start < end){
-    //         int temp = arr[start];
-    //         arr[start] = arr[end];
-    //         arr[end] = temp;
-    //         start++;
-    //         end--;
-    //     }
-    // }
+    static void reverseArray(int[] arr){
+        int start = 0, end = arr.length-1;
+        while(start < end){
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }
 
-    // static void reverseArray2(int[] arr){
-    // int start = 0, end = arr.length-1;
-    // while(start < end){
-    //     // int temp = arr[start];
-    //     // arr[start] = arr[end];
-    //     // arr[end] = temp;
-    //     // or call the : that was created in the class 
-    //     swap(arr,start,end);
-    //     start++;
-    //     end--;
-    //     }
-    // }
+    static void reverseArray2(int[] arr){
+    int start = 0, end = arr.length-1;
+    while(start < end){
+        // int temp = arr[start];
+        // arr[start] = arr[end];
+        // arr[end] = temp;
+        // or call the : that was created in the class 
+        swap(arr,start,end);
+        start++;
+        end--;
+        }
+    }
 }
