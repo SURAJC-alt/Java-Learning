@@ -1,33 +1,27 @@
 # Insertion Sort
 
-Insertion Sort is a simple **comparison-based sorting algorithm** that builds the final sorted array **one element at a time**.
+Insertion Sort is a simple **comparison-based sorting algorithm** that builds a sorted array one element at a time.
 
-It is inspired by the way people naturally sort a hand of playing cards. Each new element is picked up and inserted into its correct position within the already sorted portion of the array.
+During each iteration, the algorithm takes the next element from the unsorted portion and moves it toward its correct position by comparing it with the elements before it.
 
-Unlike Bubble Sort and Selection Sort, Insertion Sort performs exceptionally well on **small or nearly sorted datasets**.
-
----
-
-# 1. How Insertion Sort Works
-
-Insertion Sort divides the array into two parts:
-
-- **Sorted portion** (left side)
-- **Unsorted portion** (right side)
-
-Initially, the first element is considered sorted.
-
-During each pass:
-
-1. Pick the first element from the unsorted portion (called the **key**).
-2. Compare the key with elements in the sorted portion from right to left.
-3. Shift every larger element one position to the right.
-4. Insert the key into the empty position created.
-5. Repeat until every element has been inserted.
+The process continues until the entire array becomes sorted.
 
 ---
 
-# 2. Example
+# How It Works
+
+1. Assume the first element is already sorted.
+2. Pick the next element in the array.
+3. Compare it with the element immediately before it.
+4. If it is smaller, swap the two elements.
+5. Continue moving the element backward until:
+   - it reaches the beginning of the array, or
+   - it is no longer smaller than the previous element.
+6. Repeat the process for every remaining element.
+
+---
+
+# Example
 
 Sort the following array:
 
@@ -37,14 +31,12 @@ Sort the following array:
 
 ### Pass 1
 
-Key = **11**
+Current element: **11**
 
 ```text
-Shift 12
+12 > 11
 
-[12, 12, 13, 5]
-
-Insert 11
+Swap
 
 [11, 12, 13, 5]
 ```
@@ -53,10 +45,12 @@ Insert 11
 
 ### Pass 2
 
-Key = **13**
+Current element: **13**
 
 ```text
-No shifting required
+12 < 13
+
+No swap needed.
 
 [11, 12, 13, 5]
 ```
@@ -65,16 +59,22 @@ No shifting required
 
 ### Pass 3
 
-Key = **5**
+Current element: **5**
 
 ```text
-Shift 13
-Shift 12
-Shift 11
+Swap with 13
 
-[11, 11, 12, 13]
+[11, 12, 5, 13]
 
-Insert 5
+↓
+
+Swap with 12
+
+[11, 5, 12, 13]
+
+↓
+
+Swap with 11
 
 [5, 11, 12, 13]
 ```
@@ -83,33 +83,34 @@ The array is now sorted.
 
 ---
 
-# 3. Java Implementation
+# Java Implementation
 
 ```java
 public static void insertionSort(int[] arr) {
 
     int n = arr.length;
 
-    for (int i = 1; i < n; i++) {
+    for (int i = 0; i < n - 1; i++) {
 
-        int key = arr[i];
-        int j = i - 1;
+        for (int j = i + 1; j > 0; j--) {
 
-        while (j >= 0 && arr[j] > key) {
+            if (arr[j] < arr[j - 1]) {
 
-            arr[j + 1] = arr[j];
-            j--;
+                int temp = arr[j];
+                arr[j] = arr[j - 1];
+                arr[j - 1] = temp;
 
+            } else {
+                break;
+            }
         }
-
-        arr[j + 1] = key;
     }
 }
 ```
 
 ---
 
-# 4. Dry Run
+# Dry Run
 
 For the array:
 
@@ -126,41 +127,7 @@ For the array:
 
 ---
 
-# 5. Visualization
-
-Initial Array
-
-```text
-[12, 11, 13, 5]
-```
-
-After Pass 1
-
-```text
-[11, 12, 13, 5]
- --------
- Sorted
-```
-
-After Pass 2
-
-```text
-[11, 12, 13, 5]
- ------------
-   Sorted
-```
-
-After Pass 3
-
-```text
-[5, 11, 12, 13]
-----------------
- Entire array sorted
-```
-
----
-
-# 6. Time Complexity
+# Time Complexity
 
 | Case | Complexity |
 |------|------------|
@@ -168,50 +135,23 @@ After Pass 3
 | Average Case | **O(n²)** |
 | Worst Case | **O(n²)** |
 
-### Why?
-
-- **Best Case:** The array is already sorted, so no shifting is required.
-- **Worst Case:** The array is in reverse order, so every element must be shifted.
-- **Average Case:** About half of the previous elements are shifted for each insertion.
+- **Best Case:** The array is already sorted, so the inner loop stops immediately.
+- **Average Case:** Elements move a moderate distance toward their correct positions.
+- **Worst Case:** The array is reverse sorted, causing every element to move to the beginning.
 
 ---
 
-# 7. Space Complexity
+# Space Complexity
 
-Insertion Sort sorts the array **in-place**.
+| Complexity |
+|------------|
+| **O(1)** |
 
-**Space Complexity:** **O(1)**
-
----
-
-# 8. Number of Swaps
-
-Unlike Bubble Sort and Selection Sort, Insertion Sort mainly performs **shifts** instead of swaps.
-
-This reduces unnecessary write operations and makes the algorithm efficient for nearly sorted arrays.
+Insertion Sort sorts the array in-place and requires only a constant amount of extra memory.
 
 ---
 
-# 9. Advantages
-
-- Very easy to implement.
-- Stable sorting algorithm.
-- In-place sorting.
-- Adaptive (becomes faster if the array is nearly sorted).
-- Excellent for small datasets.
-- Used inside many advanced sorting algorithms for small subarrays.
-
----
-
-# 10. Disadvantages
-
-- Slow for large datasets.
-- Worst-case time complexity is O(n²).
-- Performs many shifts when the array is reverse sorted.
-
----
-
-# 11. Properties
+# Properties
 
 | Property | Value |
 |----------|-------|
@@ -223,43 +163,43 @@ This reduces unnecessary write operations and makes the algorithm efficient for 
 
 ---
 
-# 12. Bubble vs Selection vs Insertion
+# Advantages
 
-| Feature | Bubble | Selection | Insertion |
-|----------|---------|-----------|-----------|
-| Main Idea | Swap adjacent elements | Find minimum element | Insert each element into sorted part |
-| Stable | Yes | No | Yes |
-| Adaptive | Yes (Optimized) | No | Yes |
-| Best Time | O(n) | O(n²) | O(n) |
-| Worst Time | O(n²) | O(n²) | O(n²) |
-| Swaps | Many | Very Few | Mostly Shifts |
+- Easy to understand and implement.
+- Efficient for small datasets.
+- Performs well on nearly sorted arrays.
+- Requires only constant extra memory.
+- Preserves the relative order of equal elements.
 
 ---
 
-# Cheat Sheet
+# Disadvantages
 
-| Feature | Value |
-|----------|-------|
-| Idea | Insert each element into its correct position |
-| Elements fixed after each pass | Sorted portion grows by one element |
-| Best Time | O(n) |
-| Average Time | O(n²) |
-| Worst Time | O(n²) |
-| Space | O(1) |
-| Stable | Yes |
-| In-place | Yes |
-| Adaptive | Yes |
+- Inefficient for large datasets.
+- Worst-case time complexity is **O(n²)**.
+- Performance decreases significantly on reverse sorted arrays.
 
 ---
-## Summary
+
+# Key Points
+
+- Builds the sorted portion from left to right.
+- One new element is placed into its correct position during each pass.
+- The inner loop moves backward through the sorted portion.
+- The algorithm stops moving an element as soon as it reaches the correct position.
+- Works efficiently when the array is already mostly sorted.
+
+---
+
+# Summary
 
 - **Algorithm Type:** Comparison-based Sorting
 - **Stable:** Yes
 - **In-place:** Yes
 - **Adaptive:** Yes
-- **Worst Time Complexity:** **O(n²)**
-- **Average Time Complexity:** **O(n²)**
 - **Best Time Complexity:** **O(n)**
+- **Average Time Complexity:** **O(n²)**
+- **Worst Time Complexity:** **O(n²)**
 - **Space Complexity:** **O(1)**
 
-Insertion Sort repeatedly takes the next unsorted element and inserts it into its correct position within the sorted portion of the array. It is one of the best simple sorting algorithms for **small or nearly sorted datasets**, making it widely used as a component of more advanced sorting algorithms.
+Insertion Sort repeatedly inserts each element into its correct position within the sorted portion of the array until the entire array is sorted.
