@@ -2,43 +2,46 @@ import java.util.Arrays;
 
 public class MergeSort {
     public static void main(String[] args) {
-        int[] arr = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
-        System.out.println(Arrays.toString(Sort(arr)));
+        int[] arr = { 5,4,3,2,1 };
+        Sort(arr, 0, arr.length);
+        System.out.println(Arrays.toString(arr));
     }
-    //not IN-Place Sorting:
-    static int[] Sort(int[] arr) {
-        if (arr.length == 1) {
-            return arr;
+
+    static void Sort(int[] arr, int start, int end) {
+        if (end - start == 1) {
+            return;
         }
-        int mid = arr.length / 2;
-        int[] left = Sort(Arrays.copyOfRange(arr, 0, mid));
-        int[] right = Sort(Arrays.copyOfRange(arr, mid, arr.length));
-        return merge(left, right);
+        int mid = start + (end - start) / 2;
+        Sort(arr, start, mid);
+        Sort(arr, mid, end);
+        merge(arr,start,mid,end);
     }
-    //not IN-Place Sorting:
-    static int[] merge(int[] left, int[] right) {
-        int[] ans = new int[left.length + right.length];
-        int i = 0, j = 0, k = 0;
-        while (i < left.length && j < right.length) {
-            if (left[i] < right[j]) {
-                ans[k] = left[i];
+
+    static void merge(int[] arr, int start, int mid, int end) {
+        int[] ans = new int[end-start];
+        int i = start, j = mid, k = 0;
+        while (i < mid && j < end) {
+            if (arr[i] < arr[j]) {
+                ans[k] = arr[i];
                 i++;
             } else {
-                ans[k] = right[j];
+                ans[k] = arr[j];
                 j++;
             }
             k++;
         }
-        while (i < left.length) {
-            ans[k] = left[i];
+        while (i < mid) {
+            ans[k] = arr[i];
             i++;
             k++;
         }
-        while (j < right.length) {
-            ans[k] = right[j];
+        while (j < end) {
+            ans[k] = arr[j];
             j++;
             k++;
         }
-        return ans;
+        for(int l = 0; l < ans.length; l++){
+            arr[start+l] = ans[l];
+        }
     }
 }
