@@ -1,93 +1,93 @@
 public class Recursion {
-
     public static void main(String[] args) {
-        // 1. Basic Recursion
-        System.out.println("Print Numbers:");
-        printNumbers(1);
+    //    int[] arr = {1,4,3,-5,-4,8,6};
+        //SumTringle(arr);
+        // int[] result = maxAndMin(arr, 0, 0, 0);
 
+        // System.out.println("Max: " + result[0]);
+        // System.out.println("Min: " + result[1]);
 
-        // 2. Factorial
-        System.out.println("\nFactorial of 5:");
-        System.out.println(factorial(5));
+        // System.out.println(upperCaseFinder("suarJ",0));
 
-        // 3. Fibonacci
-        System.out.println("\nFibonacci of 6:");
-        System.out.println(fibonacci(6));
+        // printTillN(5);
 
-        // 4. Sum of Numbers
-        System.out.println("\nSum from 1 to 5:");
-        System.out.println(sum(5));
-      
-        // 5. Recursive Binary Search
-        int[] arr = {2, 5, 7, 9, 13, 17, 21, 30};
+        // System.out.println(strLength("SURAJ CHITRAGAR"));
 
-        int target = 17;
-
-        int index = binarySearch(arr, target, 0, arr.length - 1);
-
-        System.out.println("\nBinary Search:");
-        System.out.println("Target found at index : " + index);
+        // sort(arr, arr.length);
+        // System.out.println(java.util.Arrays.toString(arr));
     }
+    // //   Sum Triangle from Array GFG:
+    // static void SumTringle(int[] arr){
+    //     if(arr.length < 1){
+    //         return;
+    //     }
+    //     int[] temp = new int[arr.length-1];
+    //     for(int i = 0; i < temp.length; i++){
+    //         temp[i] = arr[i]+arr[i+1];
+    //     }
+    //     SumTringle(temp);
+    //     System.out.println(java.util.Arrays.toString(arr));
+    // }
 
-        // Print Numbers
-    static void printNumbers(int n) {
+    // //Maximum and Minimum value in an array GFG
+    // static int[] maxAndMin(int[] arr, int max, int min, int index) {
+    //     if (index == arr.length) { 
+    //         return new int[]{arr[max], arr[min]}; 
+    //     } 
+    //     if (arr[index] > arr[max]) { 
+    //         max = index; 
+    //     } 
+    //     if (arr[index] < arr[min]) { 
+    //         min = index; 
+    //     } 
+    //     return maxAndMin(arr, max, min, index + 1); 
+    // }
 
-        // Base Condition
-        if (n == 5) {
-            System.out.println(n);
-            return;
-        }
+    //First Uppercase Letter in a String GFG
+    // static char upperCaseFinder(String str, int i){
+    //     if(str == null || i >= str.length()){ 
+    //         return '\0'; 
+    //     } 
+    //     if(Character.isUpperCase(str.charAt(i))){
+    //         return str.charAt(i);
+    //     }
+    //     return upperCaseFinder(str, i+1);
+    // }
 
-        System.out.println(n);
+    // // Print 1 To N Without Loop GFG
+    // static void printTillN(int n) {
+    // if(n <= 0){
+    //     return;
+    // }
+    // printTillN(n-1);
+    // System.out.print(n+" ");
+    // }
 
-        // Recursive Call
-        printNumbers(n + 1);
-    }
+    // //Length of string using Recursion GFG
+    // static int strLength(String str){
+    //     if (str == null || str.length() <= 0) {
+    //         return 0;
+    //     }
+    //     return strLength(str.substring(1))+1;
+    // }
 
-    // Factorial
-    static int factorial(int n) {
-
-        if (n <= 1)
-            return 1;
-
-        return n * factorial(n - 1);
-    }
-
-    // Fibonacci
-
-    static int fibonacci(int n) {
-
-        if (n < 2)
-            return n;
-
-        return fibonacci(n - 1) + fibonacci(n - 2);
-    }
-
-    // Sum of First N Numbers
-    static int sum(int n) {
-
-        if (n == 1)
-            return 1;
-
-        return n + sum(n - 1);
-    }
-
-    // Recursive Binary Search
-    static int binarySearch(int[] arr, int target, int start, int end) {
-
-        // Base Condition
-
-        if (start > end)
-            return -1;
-
-        int mid = start + (end - start) / 2;
-
-        if (arr[mid] == target)
-            return mid;
-
-        if (target < arr[mid])
-            return binarySearch(arr, target, start, mid - 1);
-
-        return binarySearch(arr, target, mid + 1, end);
-    }
+    // //Bubble Sort using recursion:
+    // static void sort(int[] arr, int n){
+    //     if(n == 1){
+    //         return;
+    //     }
+    //     int count = 0;
+    //     for(int i = 0; i < n - 1; i++){
+    //         if (arr[i] > arr[i+1]) {
+    //             int temp = arr[i];
+    //             arr[i] = arr[i+1];
+    //             arr[i+1] = temp;
+    //             count = count + 1;
+    //         }
+    //     }
+    //     if(count == 0){
+    //         return;
+    //     }
+    //     sort(arr,n-1);
+    // }
 }
